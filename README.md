@@ -1,9 +1,9 @@
 # tensor1
 
 This repository is a C implementation of three types quantized neural networks: 
-- Sparse + Binary Neural Network
+- Sparse + Binary Neural Network (1-bit)
 - Post-Training 8-bit Quantization
-- Quantization Aware Training
+- Quantization Aware Training (8-bit)
 
 It was written as part of my PhD dissertation, specifically for the purpose of deployment on microcontrollers.  Each model has been tested on an Arduino Nano 33.  The models are each simple MLPs (single hidden layer) with 256 hidden neurons and a RelU activation.  I fuse the ReLU activation into the linear kernel for each model.  
 
