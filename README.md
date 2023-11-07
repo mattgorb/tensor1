@@ -7,6 +7,8 @@ This repository is a C implementation of three types quantized neural networks:
 
 It was written as part of my PhD dissertation, specifically for the purpose of deployment on microcontrollers.  Each model has been tested on an Arduino Nano 33.  The models are each simple MLPs (single hidden layer) with 256 hidden neurons and a RelU activation.  I fuse the ReLU activation into the linear kernel for each model.  
 
+To go step-by-step through the implementation, start in the python_quantization folder.  
+
 The sparse binary neural network implements a special kernel which 1) unpacks bit values from uint_8 data structures and 2) iterates simultaneously over the mask and weights.  
 
 
