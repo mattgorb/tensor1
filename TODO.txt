@@ -1,0 +1,116 @@
+hidden_size=512
+sbt accuracy: 
+Top Test Accuracy: 0.9757
+
+
+
+python write_params.py --file_in=mnist_mlp_qat --file_out=mnist_mlp_qat --hidden_size=256
+
+make
+make build-arduino MODEL=sbnn_fp_model
+make build-model MODEL=sbnn_fp_model
+
+run
+
+
+FULL PRECISION OUTPUT:
+
+[[-1.4192299e+03 -4.7858247e+03 -9.7861252e+01  6.0435736e+02
+  -3.6945576e+03 -1.6124873e+03 -6.6953213e+03  3.6266919e+03
+  -1.6945975e+03  1.3011093e+00]]
+
+
+[[-1419.2299    -4785.8247      -97.86125     604.35736   -3694.5576
+  -1612.4873    -6695.3213     3626.692     -1694.5975        1.3011093]]
+
+
+
+
+
+
+
+
+
+
+
+1. SBNN_FP Linear DONE
+2. SBNN Linear DONE
+3. Quantized (8 bit weights) 
+**BREAK FOR TILED BIT PARAMETERS**** 
+4. SBNN_FP Conv (mnist)
+5. SBNN Conv (mnist)
+4. Quantized and FP Conv (mnist)
+5. Quantized and FP Conv (colored images)
+6. SBNN FP Transformer
+7. SBNN Transformer
+
+
+
+
+
+
+nohup python -u qat.py --epochs=150 > qat_150.txt  2>&1 &
+nohup python -u ptq.py --epochs=150 > ptq_150.txt  2>&1 &
+
+
+
+PTQ MNIST MLP
+Test set: Average loss: 0.0008, Accuracy: 9705/10000 (97%)
+Test Accuracy: 0.9705
+
+Image 0
+tensor([[ 0.,  0.,  0.,  0.,  0.,  0.,  0., 36.,  0.,  0.]])
+Image 1
+tensor([[ 0.,  0., 31.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+Image 2
+tensor([[ 0., 20.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+Image 3
+tensor([[41.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+Image 4
+tensor([[ 0.,  0.,  0.,  0., 44.,  0.,  0.,  0.,  0.,  0.]])
+
+
+
+QAT MNIST MLP 
+
+Test Accuracy: 0.9833
+
+Image 0
+tensor([[-35.6700, -47.2103, -22.0315,  -9.4421, -82.8803, -33.5718, -93.3715,
+          29.3753, -29.3753, -28.3262]])
+Image 1
+tensor([[ -32.5227,  -15.7368,   48.2594,  -57.7015, -144.7783,  -40.9156,
+          -12.5894,  -87.0768,  -17.8350, -116.4521]])
+Image 2
+tensor([[-60.8488,  17.8350, -16.7859, -32.5227, -25.1788, -29.3753, -25.1788,
+         -15.7368,  -8.3929, -38.8174]])
+Image 3
+tensor([[ 35.6700, -50.3577, -15.7368, -54.5541, -49.3085, -41.9647, -20.9824,
+         -19.9332, -58.7506, -25.1788]])
+Image 4
+tensor([[-26.2279, -86.0277, -24.1297, -65.0453,  32.5227, -53.5050, -46.1612,
+         -17.8350, -33.5718,   4.1965]])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
