@@ -94,7 +94,7 @@ TensorFloat1D* qint8_float_linear_qat(struct QInt8Linear* layer, TensorFloat1D**
         
         //quantization operations
         output->data[i]=((output->data[i]-layer->zero_point_weight) * layer->scale_weight)+layer->bias.data[i];
-        //output->data[i]=activation;
+
 
         if(fuse_relu==true){
             if(output->data[i]<0){  
@@ -102,12 +102,9 @@ TensorFloat1D* qint8_float_linear_qat(struct QInt8Linear* layer, TensorFloat1D**
             }
         }
         output->data[i]=round_int8_t((output->data[i]/layer->scale+layer->zero_point));
-        //printf("%f\n", output->data[i]);
         output->data[i]=(output->data[i]-layer->zero_point)*layer->scale;
 
-        //y=(y/self.fc1.scale)+self.fc1.zero_point
-        //y=torch.round(y)
-        //y=(y-self.fc1.zero_point)*self.fc1.scale         
+    
     }
 
     return output;
