@@ -5,7 +5,7 @@ This repository is a C implementation of three types quantized neural networks:
 - Post-Training 8-bit Quantization
 - Quantization Aware Training (8-bit)
 
-It was written as part of my PhD dissertation, specifically for the purpose of deployment on microcontrollers.  Each model has been tested on an Arduino Nano 33.  The models are each simple MLPs (single hidden layer) with 256 hidden neurons and a RelU activation.  I fuse the ReLU activation into the linear kernel for each model.  
+It was written as part of my PhD dissertation, specifically for the purpose of deployment on microcontrollers.  Each model has been tested on an Arduino Nano 33.  The models are each simple MLPs (single hidden layer) with 256 hidden neurons and a ReLU activation.  I fuse the ReLU activation into the linear kernel for each model.  
 
 To go step-by-step through the implementation, start in the python_quantization folder.  
 
