@@ -1,6 +1,6 @@
 # tensor1
 
-This repository is a C implementation of three types quantized neural networks: 
+This repository is a C implementation of three types of quantized neural networks: 
 - Sparse + Binary Neural Network (1-bit)
 - Post-Training 8-bit Quantization
 - Quantization Aware Training (8-bit)
